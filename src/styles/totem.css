@@ -298,12 +298,12 @@ html, body {
        en el nuevo límite del 25% sin desbordar ni verse apretado.
        =========================================================
     */
-    width: 150px;  
-    height: 150px; 
+    width: 100px;  
+    height: 100px; 
     
     background: #FFFFFF; /* Fondo blanco requerido para que los móviles lean el QR */
     border-radius: 12px;
-    padding: 8px; /* Margen interior (respiración) de la imagen */
+    padding: 10px; /* Margen interior (respiración) de la imagen */
     
     display: flex;
     align-items: center;
