@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let rankClass = '';
             let medal = `#${rank}`;
 
-            if (rank === 1) { rankClass = 'rank-1'; medal = '👑 1°'; }
-            else if (rank === 2) { rankClass = 'rank-2'; medal = '🥈 2°'; }
-            else if (rank === 3) { rankClass = 'rank-3'; medal = '🥉 3°'; }
+            if (rank === 1) { rankClass = 'rank-1'; medal = '👑'; }
+            else if (rank === 2) { rankClass = 'rank-2'; medal = '2°'; }
+            else if (rank === 3) { rankClass = 'rank-3'; medal = '3°'; }
 
             const pulseEffect = (rank === 1 && isLeaderChanged) ? 'updated-pulse' : '';
 
