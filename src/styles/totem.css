@@ -12,25 +12,25 @@
 html, body {
     width: 100vw;
     height: 100vh;
-    height: 100dvh; /* dvh (Dynamic Viewport Height) previene problemas con barras de navegador móvil */
-    overflow: hidden !important; /* Bloquea el scroll de la página completa */
+    height: 100dvh; /* dvh previene problemas de cálculo en algunos navegadores */
+    overflow: hidden !important; 
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: var(--color-bg-deep); /* Fondo base heredado de styles.css */
+    background-color: var(--color-bg-deep); 
 }
 
 /* 
   2. CONTENEDOR RAÍZ DEL TÓTEM
-  Usa Flexbox en columna para apilar: Header -> Lista de Ranking (flexible) -> Footer (fijo al 25%)
+  Usa Flexbox en columna para apilar de forma controlada el contenido.
 */
 #totemRoot {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra los hijos horizontalmente */
+    align-items: center; 
     justify-content: space-between;
-    padding: 20px 16px;
+    padding: 2vh 2vw; /* Unidades relativas para márgenes en 4K */
     box-sizing: border-box;
 }
 
@@ -40,22 +40,22 @@ html, body {
 .totem-header {
     width: 100%;
     text-align: center;
-    flex-shrink: 0; /* Evita que el header se aplaste si la lista crece mucho */
-    margin-bottom: 10px;
+    flex-shrink: 0; 
+    margin-bottom: 1.5vh;
 }
 
 .totem-title {
-    font-size: 26px;
+    font-size: 3vh; /* Ajuste relativo para legibilidad en 4K */
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--color-text-light);
-    text-shadow: 0 0 15px rgba(0, 210, 255, 0.7); /* Brillo neón cian */
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.7); 
     margin-top: 5px;
 }
 
 .totem-subtitle {
-    font-size: 14px;
+    font-size: 1.5vh;
     color: var(--color-primary);
     font-weight: 800;
     text-transform: uppercase;
@@ -67,22 +67,21 @@ html, body {
    ========================================================================== */
 .ranking-container {
     width: 100%;
-    flex: 1; /* Toma todo el espacio sobrante entre el header y el footer */
-    min-height: 0; /* Hack vital de Flexbox para permitir scroll interno */
-    overflow-y: auto; /* Habilita scroll vertical solo en esta área */
+    flex: 1; 
+    min-height: 0; 
+    overflow-y: auto; 
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Espaciado uniforme entre tarjetas */
+    gap: 1.5vh; /* Espaciado dinámico entre tarjetas */
     padding: 4px;
 }
 
-/* Personalización de la barra de scroll (Scrollbar) para que combine con el tema */
 .ranking-container::-webkit-scrollbar {
-    width: 6px;
+    width: 8px; /* Scroll más grueso para pantallas grandes */
 }
 .ranking-container::-webkit-scrollbar-thumb {
     background: var(--color-cyan-glow);
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 /* ==========================================================================
@@ -92,51 +91,45 @@ html, body {
     background: var(--color-bg-card);
     border: 1.5px solid var(--color-cyan-subtle);
     border-radius: var(--border-radius-md);
-    padding: 12px 16px;
+    padding: 1.5vh 2vw; /* Relleno dinámico */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Transición suave para cuando suben/bajan de puesto por los datos de Firebase */
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 10, 50, 0.5);
-    flex-shrink: 0; /* Evita que las tarjetas se aplasten */
+    flex-shrink: 0; 
 }
 
-/* Contenedor del nombre y la medalla */
 .rank-info {
     display: flex;
     align-items: center;
     gap: 14px;
 }
 
-/* Nombre de la empresa */
 .company-name {
-    font-size: 15px;
+    font-size: 1.8vh; /* Escala de fuente para 4K */
     font-weight: 800;
     color: var(--color-text-light);
     letter-spacing: 0.5px;
-    max-width: 190px;
-    /* Truncar texto largo con puntos suspensivos (...) para no romper el diseño */
+    max-width: 45vw; /* Previene desbordamiento en nombres muy largos */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* Puntaje (Número de registros) */
 .company-score {
-    font-size: 18px;
+    font-size: 2vh;
     font-weight: 900;
     color: var(--color-primary);
     background: rgba(0, 0, 0, 0.4);
-    padding: 4px 12px;
+    padding: 0.5vh 1.5vw;
     border-radius: 20px;
     border: 1px solid rgba(255, 184, 28, 0.3);
 }
 
-/* Medalla base (puestos 4 hacia abajo) */
 .rank-badge {
-    width: 32px;
-    height: 32px;
+    width: 4vh;
+    height: 4vh;
     border-radius: 50%;
     background: rgba(0, 30, 100, 0.8);
     border: 1px solid var(--color-cyan-glow);
@@ -144,15 +137,13 @@ html, body {
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 15px;
+    font-size: 1.8vh;
     color: var(--color-text-light);
 }
 
 /* ==========================================================================
    6. GAME JUICE: EFECTOS ESPECIALES PARA EL TOP 3
    ========================================================================== */
-
-/* --- TERCER LUGAR (BRONCE) --- */
 .ranking-row.rank-3 {
     background: linear-gradient(135deg, rgba(205,127,50,0.2), rgba(0,16,70,0.8));
     border: 2px solid #CD7F32;
@@ -160,7 +151,6 @@ html, body {
 }
 .rank-3 .rank-badge { background: #CD7F32; color: #FFF; border-color: #FFF; }
 
-/* --- SEGUNDO LUGAR (PLATA) --- */
 .ranking-row.rank-2 {
     background: linear-gradient(135deg, rgba(192,192,192,0.2), rgba(0,16,70,0.8));
     border: 2px solid #E0E0E0;
@@ -168,47 +158,43 @@ html, body {
 }
 .rank-2 .rank-badge { background: #E0E0E0; color: #000; border-color: #FFF; }
 
-/* --- PRIMER LUGAR (ORO LÍDER ABSOLUTO - GAME JUICE) --- */
+/* PRIMER LUGAR (ORO LÍDER ABSOLUTO - GAME JUICE) */
 .ranking-row.rank-1 {
-    position: relative; /* Contexto de posicionamiento para que las partículas no se escapen de la pantalla */
-    overflow: visible;  /* Permite que las partículas salgan del borde de la tarjeta */
+    position: relative; 
+    overflow: visible;  
     background: linear-gradient(135deg, rgba(255, 184, 28, 0.4), rgba(0, 24, 120, 0.9));
-    border: 2.5px solid var(--color-primary);
-    transform: scale(1.06); /* Lupa: Es más grande que el resto */
-    padding: 18px 20px;
+    border: 3px solid var(--color-primary);
+    transform: scale(1.06); 
+    padding: 2.2vh 2.5vw;
     box-shadow: 0 0 35px rgba(255, 184, 28, 0.7), inset 0 0 20px rgba(255, 215, 0, 0.4);
-    animation: leaderGlowPulse 2.5s infinite alternate; /* Respiración brillante */
+    animation: leaderGlowPulse 2.5s infinite alternate; 
     z-index: 5;
 }
 
-/* Título de la empresa líder */
 .rank-1 .company-name {
-    font-size: 18px;
+    font-size: 2.2vh;
     color: #FFFFFF;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
-/* Puntaje de la empresa líder */
 .rank-1 .company-score {
-    font-size: 22px;
+    font-size: 2.5vh;
     background: rgba(0, 0, 0, 0.6);
     color: #FFF200;
     border: 2px solid #FFD700;
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
-/* Medalla del líder */
 .rank-1 .rank-badge { 
-    width: 42px;
-    height: 42px;
+    width: 5vh;
+    height: 5vh;
     background: linear-gradient(135deg, #FFE600 0%, #FF9900 100%); 
     color: #000; 
     border: 2px solid #FFFFFF; 
-    font-size: 18px;
+    font-size: 2vh;
     box-shadow: 0 0 15px #FFD700; 
 }
 
-/* Keyframes: Pulso brillante constante del líder */
 @keyframes leaderGlowPulse {
     0% {
         box-shadow: 0 0 25px rgba(255, 184, 28, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.2);
@@ -228,7 +214,6 @@ html, body {
     50% { transform: scale(1.12); filter: brightness(1.4); }
     100% { transform: scale(1.06); filter: brightness(1); }
 }
-/* Esta clase se agrega vía JS dinámicamente cuando los puntos del líder aumentan */
 .updated-pulse {
     animation: pulsePop 0.6s ease-out;
 }
@@ -238,21 +223,20 @@ html, body {
    ========================================================================== */
 .treasure-particle {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 0.8vh; /* Partículas relativas al tamaño del monitor */
+    height: 0.8vh;
     background-color: #FFD700;
     border-radius: 50%;
-    pointer-events: none; /* Asegura que no bloqueen los clics/toques del usuario */
-    box-shadow: 0 0 8px #FFD700, 0 0 12px #FFA500;
+    pointer-events: none; 
+    box-shadow: 0 0 10px #FFD700, 0 0 15px #FFA500;
     animation: floatParticleUp 1.8s ease-in-out infinite;
     z-index: 10;
 }
 
-/* Keyframes: Efecto de flotación desvaneciente ascendente */
 @keyframes floatParticleUp {
     0% { transform: translateY(0) scale(0.4); opacity: 0; }
     30% { opacity: 1; }
-    100% { transform: translateY(-45px) scale(1.4); opacity: 0; }
+    100% { transform: translateY(-5vh) scale(1.4); opacity: 0; }
 }
 
 /* ==========================================================================
@@ -261,84 +245,81 @@ html, body {
 .totem-footer {
     width: 100%;
     
-    /* 
-       =========================================================
-       ⬇️ AQUÍ SE REDUCE EL TAMAÑO A LA CUARTA PARTE (25%) ⬇️ 
-       Antes era 30vh. Ahora 25vh garantiza que ocupa exactamente
-       el 25% de la altura de la pantalla, dando más espacio al ranking.
-       =========================================================
-    */
+    /* Mantenemos el límite estricto de la cuarta parte de la pantalla (25%) */
     min-height: 25vh; 
     
     background: var(--color-bg-card);
     border: 2px solid var(--color-cyan-glow);
     border-radius: var(--border-radius-lg);
-    padding: 16px;
+    padding: 1.5vh 2vw; /* Ajuste relativo para pantallas inmensas */
     
     display: flex;
-    flex-direction: column; /* Apila imagen y textos verticalmente */
-    align-items: center;    /* Centrado horizontal absoluto */
-    justify-content: center;/* Centrado vertical perfecto dentro del 25% */
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
     text-align: center;
     
-    gap: 12px;
-    margin-top: 10px;
-    flex-shrink: 0; /* Impide que la lista del ranking aplaste este contenedor */
+    gap: 1.5vh; /* Separación dinámica que no colapsa en 4K */
+    margin-top: 1vh;
+    flex-shrink: 0; 
     
     box-shadow: 0 8px 25px rgba(0, 10, 60, 0.8);
-    backdrop-filter: blur(10px); /* Efecto de cristal esmerilado */
+    backdrop-filter: blur(10px); 
 }
 
-/* Marco resaltado para el código QR */
+/* 
+   =========================================================
+   ⬇️ AUMENTO MASIVO DEL CÓDIGO QR PARA PANTALLAS 4K ⬇️ 
+   Se eliminan los "px" fijos. Al utilizar 14vh, la caja blanca 
+   crecerá para ocupar el 14% de la altura total de la pantalla,
+   garantizando que se vea inmenso dentro del bloque del 25vh.
+   =========================================================
+*/
 .qr-box {
-    /* 
-       =========================================================
-       ⬇️ REDUCCIÓN DE LA IMAGEN DEL QR ⬇️ 
-       Antes era 180px. Ahora 150px para encajar perfectamente 
-       en el nuevo límite del 25% sin desbordar ni verse apretado.
-       =========================================================
-    */
-    width: 100px;  
-    height: 100px; 
+    width: 14vh;  
+    height: 14vh; 
     
-    background: #FFFFFF; /* Fondo blanco requerido para que los móviles lean el QR */
+    background: #FFFFFF; 
     border-radius: 12px;
-    padding: 10px; /* Margen interior (respiración) de la imagen */
+    padding: 1vh; /* Padding también escalable para dejar respirar el código */
     
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); /* Aura cian */
+    box-shadow: 0 0 3vh rgba(0, 210, 255, 0.6); /* Sombra que crece con la pantalla */
 }
 
 .qr-image {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ajusta la imagen sin deformar su proporción */
+    object-fit: contain; 
 }
 
-/* Textos instructivos debajo del QR */
 .qr-instructions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 90%; /* Evita que el texto toque los bordes laterales */
+    max-width: 90%; 
 }
 
+/* 
+   Textos de instrucción con unidades relativas (vh). 
+   Crecerán automáticamente en el monitor de 4K en lugar de verse microscópicos.
+*/
 .qr-title {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 2vh; /* Escala masiva respecto a los px anteriores */
     font-weight: 900;
-    color: var(--color-primary); /* Amarillo corporativo de Anglo American */
+    color: var(--color-primary); 
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 0.5vh;
     letter-spacing: 1px;
 }
 
 .qr-desc {
     box-sizing: border-box;
-    font-size: 12px;
-    color: var(--color-text-light); /* Blanco para contraste con fondo oscuro */
+    font-size: 1.4vh; /* Texto de soporte adaptativo */
+    color: var(--color-text-light); 
     line-height: 1.4;
     font-weight: bold;
 }

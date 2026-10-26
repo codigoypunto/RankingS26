@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="company-name" title="${item.company}">${item.company}</div>
                     </div>
                     <div class="company-score">
-                        ${item.count} <span style="font-size: 11px; font-weight: normal; opacity: 0.8;">reg.</span>
+                        ${item.count} <span style="font-size: 11px; font-weight: normal; opacity: 0.8;"></span>
                     </div>
                 </div>
             `;
