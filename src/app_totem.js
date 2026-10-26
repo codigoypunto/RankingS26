@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('totemRoot');
     
     root.innerHTML = `
-        <div class="brand-header" style="justify-content: center;">
-            <img src="src/images/logoAngloamerica_bn.svg" alt="Anglo American" class="logo-anglo" style="height: 32px;">
+        <div class="brand-header" style="justify-content: left;">
+            <img src="src/images/logoAngloamerica_bn.svg" alt="Anglo American" class="logo-anglo" style="height: 40px;">
         </div>
         
         <header class="totem-header">
             <p class="totem-subtitle">DÍA GLOBAL DE LA SEGURIDAD</p>
-            <h1 class="totem-title">RANKING DE EMPRESAS</h1>
+            <h1 class="totem-title">BRAV@METRO</h1>
         </header>
         
         <div class="ranking-container" id="rankingList">
